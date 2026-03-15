@@ -3,44 +3,69 @@ import { useState } from "react"
 
 export default function SendMoney(){
 
-const [email,setEmail]=useState("")
-const [amount,setAmount]=useState("")
+  const [email,setEmail] = useState("")
+  const [amount,setAmount] = useState("")
 
-const send = async()=>{
+  const send = async () => {
 
-const token = localStorage.getItem("token")
+    try{
 
-await axios.post(
-"http://localhost:3490/api/account/transfer",
-{receiverEmail:email,amount:Number(amount)},
-{
-headers:{Authorization:`Bearer ${token}`}
-}
-)
+      const token = localStorage.getItem("token")
 
-alert("Transfer successful")
+      const res = await axios.post(
+        "http://localhost:3490/api/account/transfer",
+        {
+          receiverEmail: email,
+          amount: Number(amount)
+        },
+        {
+          headers:{
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
 
-}
+      alert("Transfer successful")
 
-return(
+      console.log(res.data)
 
-<div>
+    }catch(err){
 
-<h2>Send Money</h2>
+      console.log(err)
 
-<input placeholder="Receiver Email"
-onChange={e=>setEmail(e.target.value)}
-/>
+      alert(
+        err.response?.data?.message ||
+        "Transfer failed"
+      )
 
-<input placeholder="Amount"
-onChange={e=>setAmount(e.target.value)}
-/>
+    }
+  }
 
-<button onClick={send}>
-Send
-</button>
+  return(
 
-</div>
+    <div>
 
-)
+      <h2>Send Money</h2>
+
+      <input
+        placeholder="Receiver Email"
+        onChange={e => setEmail(e.target.value)}
+      />
+
+      <br/><br/>
+
+      <input
+        placeholder="Amount"
+        onChange={e => setAmount(e.target.value)}
+      />
+
+      <br/><br/>
+
+      <button onClick={send}>
+        Send
+      </button>
+
+    </div>
+
+  )
 }

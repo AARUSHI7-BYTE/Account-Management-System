@@ -20,7 +20,7 @@ export default function Login() {
 
     login(res.data.token)
 
-    navigate("/dashboard")
+    navigate("/account")
   }
 
   return (
