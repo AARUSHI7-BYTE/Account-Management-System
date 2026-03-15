@@ -20,7 +20,7 @@ export default function Signup(){
       setError("")
 
       await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        "http://localhost:3490/api/auth/signup",
         {
           name,
           email,

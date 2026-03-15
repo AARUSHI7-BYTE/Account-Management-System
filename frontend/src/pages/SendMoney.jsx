@@ -11,7 +11,7 @@ const send = async()=>{
 const token = localStorage.getItem("token")
 
 await axios.post(
-"http://localhost:5000/api/account/transfer",
+"http://localhost:3490/api/account/transfer",
 {receiverEmail:email,amount:Number(amount)},
 {
 headers:{Authorization:`Bearer ${token}`}

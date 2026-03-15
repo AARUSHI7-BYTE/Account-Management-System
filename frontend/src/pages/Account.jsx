@@ -19,7 +19,7 @@ export default function Account(){
         const token = localStorage.getItem("token")
 
         const res = await axios.get(
-          "http://localhost:5000/api/account/balance",
+          "http://localhost:3490/api/account/balance",
           {
             headers:{
               Authorization:`Bearer ${token}`

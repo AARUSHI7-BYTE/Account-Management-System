@@ -10,7 +10,7 @@ useEffect(()=>{
 const token = localStorage.getItem("token")
 
 axios.get(
-"http://localhost:5000/api/account/balance",
+"http://localhost:3490/api/account/balance",
 {
 headers:{
 Authorization:`Bearer ${token}`
